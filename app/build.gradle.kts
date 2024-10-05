@@ -77,5 +77,5 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.51.1")
     ksp("com.google.dagger:hilt-android-compiler:2.51.1")
     implementation("androidx.core:core-splashscreen:1.2.0-alpha01")
-
+    implementation("io.github.sceneview:sceneview:2.2.1")
 }
