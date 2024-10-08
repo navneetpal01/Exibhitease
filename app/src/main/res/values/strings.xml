@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Exibhitease</string>
+    <string name="onboarding01_title">Hey Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla</string>
+    <string name="onboarding01_description">Hey Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla Bla</string>
+    <string name="screen_home">Home</string>
+    <string name="screen_search">Search</string>
+    <string name="screen_settings">Settings</string>
 </resources>
