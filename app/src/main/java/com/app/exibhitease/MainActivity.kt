@@ -24,10 +24,7 @@ class MainActivity : ComponentActivity() {
         )
         setContent {
             ExibhiteaseTheme {
-                ExibhiteaseApp(
-                    firstLaunch = ,
-                    settingsViewModel =
-                )
+
             }
         }
     }

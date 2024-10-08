@@ -25,8 +25,12 @@ android {
     }
 
     buildTypes {
-        release {
-            isMinifyEnabled = false
+        getByName("debug"){
+            signingConfig = signingConfigs.getByName("debug")
+        }
+        getByName("release"){
+            isMinifyEnabled = true
+            signingConfig = signingConfigs.getByName("debug")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -39,9 +43,12 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+        freeCompilerArgs += strongSkippingConfiguration()
     }
     buildFeatures {
         compose = true
+        viewBinding = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
@@ -79,3 +86,8 @@ dependencies {
     implementation("androidx.core:core-splashscreen:1.2.0-alpha01")
     implementation("io.github.sceneview:arsceneview:0.10.0")
 }
+
+private fun strongSkippingConfiguration() = listOf(
+    "-P",
+    "plugin:androidx.compose.compiler.plugins.kotlin:experimentalStrongSkipping=true",
+)
