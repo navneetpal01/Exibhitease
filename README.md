@@ -1,15 +1,13 @@
-# DocShaper
+# Exibhitease
 
-DocShaper is an open-source Android application that serves as an all-in-one document reader. It supports a variety of document formats including PDF, DOC, DOCX, XLS, PPT, and TXT. DocShaper not only allows you to view these documents but also enables you to share them with a single click. The app is designed to be compatible with Android 10 and above, ensuring it can run on most modern devices.
+Exibhitease is an AR/VR app that allows users to take images from their gallery and convert them into a VR experience. With this app, you can immerse yourself in your own captured moments in a virtual reality environment.
+
 
 ## Features
-- PDF Reader & Editor: Easily open, read, and customize PDF documents. Merge PDFs, add new content, and tailor your documents as needed.
-- Word Reader: View DOC and DOCX files without any hassle.
-- Spreadsheet Viewer: Open and read XLS and XLSX files.
-- PowerPoint Viewer: Access and view PPT files seamlessly.
-- Text Viewer: Open and read TXT files effortlessly.
-- One-Click Sharing: Share documents quickly and easily with just one click.
-- Supports Android 10+: Compatible with devices running Android 10 and above. 
+- Image Import: Easily select images from your phone’s gallery.
+- VR Conversion: Convert any image into an immersive VR experience.
+- AR/VR Viewer: Watch your images in a VR space using the app’s viewer.
+- Simple & Intuitive UI: Designed for ease of use with a minimal learning curve.
 
 ## Technologies
 
