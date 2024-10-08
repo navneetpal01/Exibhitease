@@ -39,7 +39,7 @@ This project is built using Kotlin, Java, and Gradle. Here are the steps to buil
 
 
 ## Contributions
-Exibhitease is licensed under the MIT License. For more details, see the [LICENSE](https://github.com/navneetpal01/DocShaper/blob/master/LICENSE) file.
+Exibhitease is licensed under the MIT License. For more details, see the [LICENSE](https://github.com/navneetpal01/Exibhitease/blob/master/LICENSE) file.
 We welcome all contributions to the app. Feel free to report any issues and create pull requests for improvements or bug fixes.
 
 
