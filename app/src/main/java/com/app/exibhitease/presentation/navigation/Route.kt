@@ -13,7 +13,6 @@ object Home
 object Settings
 
 
-@Serializable
 sealed class ExibhiteaseRoute{
     @Serializable
     object Home : ExibhiteaseRoute()
@@ -24,4 +23,5 @@ sealed class ExibhiteaseRoute{
     @Serializable
     object Settings : ExibhiteaseRoute()
 }
+
 
