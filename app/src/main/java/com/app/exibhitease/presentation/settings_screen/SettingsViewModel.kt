@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.app.exibhitease.core.SettingsConstants
 import com.app.exibhitease.data.settings.SettingsDataStore
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -30,10 +31,14 @@ class SettingsViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            val firstLaunch = async { settingsDataStore.getBoolean(SettingsConstants.FIRST_LAUNCH) ?: true }
+            val firstLaunch =
+                async { settingsDataStore.getBoolean(SettingsConstants.FIRST_LAUNCH) ?: true }
             val darkMode = async { settingsDataStore.getBoolean(SettingsConstants.DARK_MODE_TYPE) }
-            val amoledTheme = async { settingsDataStore.getBoolean(SettingsConstants.AMOLED_THEME_TYPE) ?: false }
-            val dynamicTheming = async { settingsDataStore.getBoolean(SettingsConstants.DYNAMIC_THEME_TYPE) ?: false }
+            val amoledTheme =
+                async { settingsDataStore.getBoolean(SettingsConstants.AMOLED_THEME_TYPE) ?: false }
+            val dynamicTheming = async {
+                settingsDataStore.getBoolean(SettingsConstants.DYNAMIC_THEME_TYPE) ?: false
+            }
 
             _state.update {
                 it.copy(
@@ -47,17 +52,27 @@ class SettingsViewModel @Inject constructor(
         }
     }
 
-    fun onEvent(event : SettingsEvent){
-        when(event){
+    fun onEvent(event: SettingsEvent) {
+        when (event) {
             SettingsEvent.SetFirstLaunch -> {
-
+                viewModelScope.launch(Dispatchers.IO) {
+                    settingsDataStore.putBoolean(SettingsConstants.FIRST_LAUNCH, false)
+                    _state.update {
+                        it.copy(
+                            firstLaunch = false
+                        )
+                    }
+                }
             }
+
             is SettingsEvent.SetAmoledTheme -> {
 
             }
+
             is SettingsEvent.SetDarkMode -> {
 
             }
+
             is SettingsEvent.SetDynamicTheming -> {
 
             }
