@@ -73,7 +73,8 @@ fun OnBoardingHeader(){
 
     Box(
         modifier = Modifier
-            .fillMaxSize()
+            .fillMaxHeight(0.7f)
+            .fillMaxWidth()
             .drawWithContent {
                 // Draw the image content first
                 drawContent()
@@ -85,7 +86,7 @@ fun OnBoardingHeader(){
                             Color.White.copy(alpha = 0.8f), // Start with semi-transparent white
                             Color.Transparent, // No blur in the middle
                             Color.Transparent, // No blur in the middle
-                            Color.White.copy(alpha = 0.8f) // End with semi-transparent white
+                            Color.White.copy(alpha = 1f) // End with semi-transparent white
                         ),
                         startY = 0f,
                         endY = size.height
