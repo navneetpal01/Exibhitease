@@ -3,6 +3,7 @@
 
     <style name="Theme.Exibhitease" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:windowBackground">@color/white</item>
+        <item name="android:forceDarkAllowed">false</item>
     </style>
 
 </resources>

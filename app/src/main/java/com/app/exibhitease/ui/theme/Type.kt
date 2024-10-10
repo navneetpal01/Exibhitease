@@ -9,6 +9,7 @@ import androidx.compose.ui.unit.sp
 import com.app.exibhitease.R
 
 val poppins_semiBold = FontFamily(Font(R.font.poppins_semi_bold))
+val poppins_Bold = FontFamily(Font(R.font.poppins_bold))
 
 // Set of Material typography styles to start with
 val Typography = Typography(
