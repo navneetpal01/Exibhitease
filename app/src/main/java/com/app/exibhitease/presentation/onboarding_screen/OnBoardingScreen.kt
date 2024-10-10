@@ -68,11 +68,13 @@ fun OnBoardingScreen(
 }
 
 @Composable
-fun OnBoardingHeader(){
+fun OnBoardingHeader(
+    modifier: Modifier = Modifier
+){
     val blurRadius = 20.dp // Adjust the blur radius as needed
 
     Box(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxHeight(0.7f)
             .fillMaxWidth()
             .drawWithContent {
@@ -97,7 +99,7 @@ fun OnBoardingHeader(){
             .blur(blurRadius) // Apply blur to the entire layout
     ) {
         Image(
-            painter = painterResource(id = R.drawable.background),
+            painter = painterResource(id = R.drawable.ar),
             contentDescription = "Image with blurred edges",
             contentScale = ContentScale.Crop,
             modifier = Modifier.fillMaxSize()
@@ -106,9 +108,11 @@ fun OnBoardingHeader(){
 }
 
 @Composable
-fun OnBoardingBottom(){
+fun OnBoardingBottom(
+    modifier: Modifier = Modifier
+){
     Column(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
@@ -125,10 +129,10 @@ fun OnBoardingBottom(){
                         style = SpanStyle(
                             color = system_black,
                             fontSize = 28.sp,
-                            fontFamily = poppins_Bold
+                            fontFamily = poppins_Bold,
                         )
                     ){
-                        append("Start selling your")
+                        append("Start viewing your")
                     }
                     append("\n")
                     withStyle(
@@ -145,7 +149,7 @@ fun OnBoardingBottom(){
                             fontFamily = poppins_Bold
                         )
                     ){
-                        append("artwork")
+                        append("images")
                     }
                     append(" ")
                     withStyle(
@@ -155,10 +159,11 @@ fun OnBoardingBottom(){
                             fontFamily = poppins_Bold
                         )
                     ){
-                        append("today")
+                        append("in AR!")
                     }
                 },
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
+                lineHeight = 32.sp
             )
         }
         Row(
@@ -169,7 +174,7 @@ fun OnBoardingBottom(){
             horizontalArrangement = Arrangement.Center
         ){
             Text(
-                text = "Topa is an open marketplace for artist to sell their art product, for free \uD83D\uDE1A",
+                text = "Exibhitease is an immersive AR app where you can create ar, totally free! \uD83C\uDFA8✨",
                 fontSize = 15.sp,
                 color = androidx.compose.ui.graphics.Color(0xFF4E4B66),
                 textAlign = TextAlign.Center
