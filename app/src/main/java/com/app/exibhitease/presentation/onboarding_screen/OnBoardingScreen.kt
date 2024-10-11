@@ -5,78 +5,90 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.paddingFrom
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SheetState
 import androidx.compose.material3.Text
+import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.exibhitease.R
+import com.app.exibhitease.presentation.onboarding_screen.components.AppBottomSheet
 import com.app.exibhitease.presentation.settings_screen.SettingsEvent
 import com.app.exibhitease.ui.theme.poppins_Bold
 import com.app.exibhitease.ui.theme.poppins_semiBold
 import com.app.exibhitease.ui.theme.shapphire_blue
 import com.app.exibhitease.ui.theme.system_black
+import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun OnBoardingScreen(
-    onCompleted : (SettingsEvent) -> Unit
-){
+    onCompleted: (SettingsEvent) -> Unit
+) {
 
-    Scaffold(
-        modifier = Modifier
-            .fillMaxSize(),
-        topBar = {
-            OnBoardingHeader()
-        },
-        bottomBar = {
-           OnBoardingBottom()
-        },
-        containerColor = Color.White,
-    ){paddingValues ->
-        Column(
+    val scope = rememberCoroutineScope()
+    val sheetState = rememberBottomSheetScaffoldState(
+        bottomSheetState = SheetState(skipPartiallyExpanded = true, density = Density(density = 1f))
+    )
+    AppBottomSheet(
+        state = sheetState,
+    ) {
+        Scaffold(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-        ){
+                .fillMaxSize(),
+            bottomBar = {
+                OnBoardingBottom(
+                    onClick = {
+                        scope.launch {
+                            sheetState.bottomSheetState.show()
+                        }
+                    }
+                )
+            },
+            containerColor = Color.White,
+            contentWindowInsets = WindowInsets(top = 0.dp)
+        ) { paddingValues ->
+            OnBoardingHeader(
+                modifier = Modifier
+                    .padding(paddingValues)
+            )
         }
 
     }
-
 }
 
 @Composable
 fun OnBoardingHeader(
     modifier: Modifier = Modifier
-){
+) {
     val blurRadius = 20.dp // Adjust the blur radius as needed
 
     Box(
         modifier = modifier
-            .fillMaxHeight(0.7f)
-            .fillMaxWidth()
+            .fillMaxSize()
             .drawWithContent {
                 // Draw the image content first
                 drawContent()
@@ -107,22 +119,24 @@ fun OnBoardingHeader(
     }
 }
 
+
 @Composable
 fun OnBoardingBottom(
-    modifier: Modifier = Modifier
-){
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit
+) {
     Column(
         modifier = modifier
             .fillMaxWidth(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
-    ){
+    ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
-        ){
+        ) {
             Text(
                 text = buildAnnotatedString {
                     withStyle(
@@ -131,7 +145,7 @@ fun OnBoardingBottom(
                             fontSize = 28.sp,
                             fontFamily = poppins_Bold,
                         )
-                    ){
+                    ) {
                         append("Start viewing your")
                     }
                     append("\n")
@@ -148,7 +162,7 @@ fun OnBoardingBottom(
                             fontSize = 28.sp,
                             fontFamily = poppins_Bold
                         )
-                    ){
+                    ) {
                         append("images")
                     }
                     append(" ")
@@ -158,7 +172,7 @@ fun OnBoardingBottom(
                             fontSize = 28.sp,
                             fontFamily = poppins_Bold
                         )
-                    ){
+                    ) {
                         append("in AR!")
                     }
                 },
@@ -172,7 +186,7 @@ fun OnBoardingBottom(
                 .padding(top = 15.dp, bottom = 30.dp, start = 10.dp, end = 10.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
-        ){
+        ) {
             Text(
                 text = "Exibhitease is an immersive AR app where you can create ar, totally free! \uD83C\uDFA8✨",
                 fontSize = 15.sp,
@@ -183,14 +197,12 @@ fun OnBoardingBottom(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(bottom = 20.dp),
+                .padding(bottom = 10.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
-        ){
+        ) {
             Button(
-                onClick = {
-
-                },
+                onClick = onClick,
                 modifier = Modifier
                     .fillMaxWidth(0.85f),
                 shape = RoundedCornerShape(10.dp),
@@ -198,7 +210,7 @@ fun OnBoardingBottom(
                 elevation = null,
                 border = null,
 
-            ) {
+                ) {
                 Text(
                     text = "Sound exciting \uD83D\uDC4D",
                     modifier = Modifier
