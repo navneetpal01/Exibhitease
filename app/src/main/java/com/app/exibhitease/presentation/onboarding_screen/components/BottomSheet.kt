@@ -26,6 +26,7 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.exibhitease.R
@@ -34,6 +35,7 @@ import com.app.exibhitease.ui.theme.color_bottomSheet
 import com.app.exibhitease.ui.theme.poppins_Bold
 import com.app.exibhitease.ui.theme.poppins_medium
 import com.app.exibhitease.ui.theme.poppins_regular
+import dev.romainguy.kotlin.math.max
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -194,13 +196,17 @@ fun PermissionUi(
                 text = header,
                 fontSize = 20.sp,
                 color = Color(0xFFFCFCFC),
-                fontFamily = poppins_regular
+                fontFamily = poppins_regular,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis
             )
             Text(
                 text = desc,
                 fontSize = 15.sp,
                 fontFamily = poppins_medium,
                 color = Color(0xFFFCFCFC),
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis
             )
         }
     }
