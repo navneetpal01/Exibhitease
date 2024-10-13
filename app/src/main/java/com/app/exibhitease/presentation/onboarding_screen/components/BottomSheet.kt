@@ -1,25 +1,39 @@
 package com.app.exibhitease.presentation.onboarding_screen.components
 
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.BottomSheetScaffold
 import androidx.compose.material3.BottomSheetScaffoldState
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.app.exibhitease.common.compose.UiButton
 import com.app.exibhitease.ui.theme.color_bottomSheet
+import com.app.exibhitease.ui.theme.poppins_Bold
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppBottomSheet(
     state: BottomSheetScaffoldState,
     modifier: Modifier = Modifier,
-    content: @Composable () -> Unit
+    onClick: () -> Unit,
+    content: @Composable () -> Unit,
 ) {
 
     BottomSheetScaffold(
@@ -27,17 +41,27 @@ fun AppBottomSheet(
         scaffoldState = state,
         sheetShape = RectangleShape,
         sheetContent = {
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .fillMaxHeight(0.45f)
-                    .background(color_bottomSheet)
-            ) {
-
-            }
+            SheetContent(
+                onClick = onClick
+            )
         },
         sheetDragHandle = {
-
+            Row(
+                modifier = Modifier
+                    .height(15.dp)
+                    .fillMaxWidth()
+                    .background(color_bottomSheet),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
+            ) {
+                Box(
+                    modifier = Modifier
+                        .width(40.dp)
+                        .height(4.dp)
+                        .background(Color(0xFF4E4B66), RoundedCornerShape(15.dp))
+                        .padding(15.dp)
+                )
+            }
         },
     ) {
         content.invoke()
@@ -45,6 +69,76 @@ fun AppBottomSheet(
 }
 
 @Composable
-fun SheetContent(){
+fun SheetContent(
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit
+) {
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            .background(color_bottomSheet),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth(0.85f)
+        ) {
+
+            Text(
+                text = "Uhmm... Can we have some of your permission?",
+                color = Color(0xFFFCFCFC),
+                fontSize = 30.sp,
+                textAlign = TextAlign.Start,
+                fontFamily = poppins_Bold
+            )
+            PermissionTab(
+                modifier = Modifier
+                    .padding(vertical = 15.dp)
+            )
+        }
+        UiButton(
+            onClick = onClick,
+            modifier = Modifier
+                .padding(bottom = 10.dp),
+            text = "Sound exciting \uD83D\uDC4D"
+        )
+    }
+
+}
+
+@Composable
+fun PermissionTab(
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier
+            .fillMaxWidth(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(2.dp)
+                .background(Color(0xFF4E4B66))
+        )
+//        Spacer(modifier = Modifier.height(50.dp))
+
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(2.dp)
+                .background(Color(0xFF4E4B66))
+        )
+    }
+}
+@Composable
+fun Permission(
+    icon : Int,
+    header : String,
+    desc : String
+){
+    
 
 }

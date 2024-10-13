@@ -35,6 +35,7 @@ import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.exibhitease.R
+import com.app.exibhitease.common.compose.UiButton
 import com.app.exibhitease.presentation.onboarding_screen.components.AppBottomSheet
 import com.app.exibhitease.presentation.settings_screen.SettingsEvent
 import com.app.exibhitease.ui.theme.poppins_Bold
@@ -55,6 +56,9 @@ fun OnBoardingScreen(
     )
     AppBottomSheet(
         state = sheetState,
+        onClick = {
+            onCompleted(SettingsEvent.SetFirstLaunch)
+        }
     ) {
         Scaffold(
             modifier = Modifier
@@ -201,25 +205,10 @@ fun OnBoardingBottom(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
         ) {
-            Button(
-                onClick = onClick,
-                modifier = Modifier
-                    .fillMaxWidth(0.85f),
-                shape = RoundedCornerShape(10.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = shapphire_blue),
-                elevation = null,
-                border = null,
-
-                ) {
-                Text(
-                    text = "Sound exciting \uD83D\uDC4D",
-                    modifier = Modifier
-                        .padding(vertical = 10.dp),
-                    color = Color.White,
-                    fontSize = 15.sp,
-                    fontFamily = poppins_semiBold,
-                )
-            }
+           UiButton(
+               onClick = onClick,
+               text = "Sound exciting \uD83D\uDC4D"
+           )
         }
     }
 }
