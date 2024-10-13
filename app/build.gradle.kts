@@ -85,6 +85,7 @@ dependencies {
     ksp("com.google.dagger:hilt-android-compiler:2.51.1")
     implementation("androidx.core:core-splashscreen:1.2.0-alpha01")
     implementation("io.github.sceneview:arsceneview:0.10.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.5")
 }
 
 private fun strongSkippingConfiguration() = listOf(
