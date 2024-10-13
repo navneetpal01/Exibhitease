@@ -1,6 +1,7 @@
 package com.app.exibhitease.presentation.onboarding_screen
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,9 +10,6 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SheetState
@@ -39,8 +37,6 @@ import com.app.exibhitease.common.compose.UiButton
 import com.app.exibhitease.presentation.onboarding_screen.components.AppBottomSheet
 import com.app.exibhitease.presentation.settings_screen.SettingsEvent
 import com.app.exibhitease.ui.theme.poppins_Bold
-import com.app.exibhitease.ui.theme.poppins_semiBold
-import com.app.exibhitease.ui.theme.shapphire_blue
 import com.app.exibhitease.ui.theme.system_black
 import kotlinx.coroutines.launch
 
@@ -54,6 +50,7 @@ fun OnBoardingScreen(
     val sheetState = rememberBottomSheetScaffoldState(
         bottomSheetState = SheetState(skipPartiallyExpanded = true, density = Density(density = 1f))
     )
+
     AppBottomSheet(
         state = sheetState,
         onClick = {
@@ -86,9 +83,10 @@ fun OnBoardingScreen(
 
 @Composable
 fun OnBoardingHeader(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val blurRadius = 20.dp // Adjust the blur radius as needed
+
 
     Box(
         modifier = modifier
@@ -205,10 +203,10 @@ fun OnBoardingBottom(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
         ) {
-           UiButton(
-               onClick = onClick,
-               text = "Sound exciting \uD83D\uDC4D"
-           )
+            UiButton(
+                onClick = onClick,
+                text = "Sound exciting \uD83D\uDC4D"
+            )
         }
     }
 }
