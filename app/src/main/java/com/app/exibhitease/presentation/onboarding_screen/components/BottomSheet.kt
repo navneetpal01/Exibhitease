@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -18,8 +17,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.BottomSheetScaffold
 import androidx.compose.material3.BottomSheetScaffoldState
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -35,6 +32,8 @@ import com.app.exibhitease.R
 import com.app.exibhitease.common.compose.UiButton
 import com.app.exibhitease.ui.theme.color_bottomSheet
 import com.app.exibhitease.ui.theme.poppins_Bold
+import com.app.exibhitease.ui.theme.poppins_medium
+import com.app.exibhitease.ui.theme.poppins_regular
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -57,19 +56,19 @@ fun AppBottomSheet(
         sheetDragHandle = {
             Row(
                 modifier = Modifier
-                    .height(15.dp)
                     .fillMaxWidth()
                     .background(color_bottomSheet),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center
             ) {
+                Spacer(modifier = Modifier.height(25.dp))
                 Box(
                     modifier = Modifier
                         .width(40.dp)
                         .height(4.dp)
                         .background(Color(0xFF4E4B66), RoundedCornerShape(15.dp))
-                        .padding(15.dp)
                 )
+                Spacer(modifier = Modifier.height(12.dp))
             }
         },
     ) {
@@ -97,7 +96,7 @@ fun SheetContent(
             Text(
                 text = "Uhmm... Can we have some of your permission?",
                 color = Color(0xFFFCFCFC),
-                fontSize = 30.sp,
+                fontSize = 25.sp,
                 textAlign = TextAlign.Start,
                 fontFamily = poppins_Bold
             )
@@ -124,17 +123,17 @@ fun PermissionTab(
         Permission(
             icon = R.drawable.camera,
             heading = "Camera",
-            description = "Allow us to use your camera for Displaying Art!"
+            description = "Allow us to use your camera for Displaying Art."
         ),
         Permission(
             icon = R.drawable.picture,
             heading = "Gallery",
-            description = "We need access to your gallery to upload Images"
+            description = "We need access to your gallery to upload Images."
         ),
         Permission(
             icon = R.drawable.locations,
             heading = "Location",
-            description = "We need access to your location to provide location based services"
+            description = "We need access to your location to provide location based services."
         )
     )
     Column(
@@ -146,6 +145,7 @@ fun PermissionTab(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
+                .padding(vertical = 15.dp)
                 .height(2.dp)
                 .background(Color(0xFF4E4B66))
         )
@@ -161,6 +161,7 @@ fun PermissionTab(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
+                .padding(vertical = 15.dp)
                 .height(2.dp)
                 .background(Color(0xFF4E4B66))
         )
@@ -176,9 +177,10 @@ fun PermissionUi(
 
     Row(
         modifier = Modifier
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .padding(bottom = 10.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.Top
     ) {
         Image(
             painter = painterResource(id = icon),
@@ -189,10 +191,16 @@ fun PermissionUi(
         )
         Column {
             Text(
-                text = header
+                text = header,
+                fontSize = 20.sp,
+                color = Color(0xFFFCFCFC),
+                fontFamily = poppins_regular
             )
             Text(
-                text =desc
+                text = desc,
+                fontSize = 15.sp,
+                fontFamily = poppins_medium,
+                color = Color(0xFFFCFCFC),
             )
         }
     }

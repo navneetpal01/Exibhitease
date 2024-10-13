@@ -10,12 +10,17 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.BottomSheetDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SheetState
+import androidx.compose.material3.SheetValue
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -50,6 +55,11 @@ fun OnBoardingScreen(
     val sheetState = rememberBottomSheetScaffoldState(
         bottomSheetState = SheetState(skipPartiallyExpanded = true, density = Density(density = 1f))
     )
+    val isDimVisible by remember {
+        derivedStateOf {
+            sheetState.bottomSheetState.targetValue == SheetValue.Expanded
+        }
+    }
 
     AppBottomSheet(
         state = sheetState,
@@ -76,6 +86,13 @@ fun OnBoardingScreen(
                 modifier = Modifier
                     .padding(paddingValues)
             )
+            if (isDimVisible) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(color = BottomSheetDefaults.ScrimColor)
+                )
+            }
         }
 
     }
