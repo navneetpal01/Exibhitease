@@ -182,7 +182,7 @@ fun OnBoardingBottom(
                             fontFamily = poppins_Bold
                         )
                     ) {
-                        append("images")
+                        append("Creations")
                     }
                     append(" ")
                     withStyle(

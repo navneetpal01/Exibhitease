@@ -19,19 +19,7 @@ import com.app.exibhitease.presentation.permissions.PermissionViewModel
 
 @Composable
 fun HomeScreen(){
-    val permissionViewModel : PermissionViewModel = viewModel()
-    val permissions = arrayOf(
-        Manifest.permission.LOCATION_HARDWARE,
-        Manifest.permission.CAMERA,
-    )
-    val showDialog = permissionViewModel.showDialog.collectAsStateWithLifecycle()
-    val launchAppSettings = permissionViewModel.launchAppSettings.collectAsStateWithLifecycle()
-    val permissionResultActivityLauncher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.RequestMultiplePermissions(),
-        onResult = {
 
-        }
-    )
     Column(
         modifier = Modifier
             .fillMaxSize(),
