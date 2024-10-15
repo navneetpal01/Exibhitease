@@ -1,5 +1,10 @@
 package com.app.exibhitease.presentation.onboarding_screen
 
+import android.Manifest
+import android.app.Activity
+import android.content.pm.PackageManager
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -29,6 +34,7 @@ import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -37,9 +43,13 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.app.ActivityCompat
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.app.exibhitease.R
 import com.app.exibhitease.common.compose.UiButton
 import com.app.exibhitease.presentation.onboarding_screen.components.AppBottomSheet
+import com.app.exibhitease.presentation.permissions.PermissionViewModel
 import com.app.exibhitease.presentation.settings_screen.SettingsEvent
 import com.app.exibhitease.ui.theme.poppins_Bold
 import com.app.exibhitease.ui.theme.system_black
@@ -60,11 +70,44 @@ fun OnBoardingScreen(
             sheetState.bottomSheetState.targetValue == SheetValue.Expanded
         }
     }
+    val context = LocalContext.current
+    val permissions = arrayOf(
+        Manifest.permission.CAMERA,
+        Manifest.permission.ACCESS_FINE_LOCATION
+    )
+
+    val permissionViewModel : PermissionViewModel = viewModel()
+    val showDialog by permissionViewModel.showDialog.collectAsStateWithLifecycle()
+    val launchAppSettings by permissionViewModel.launchAppSettings.collectAsStateWithLifecycle()
+
+    val permissionResultActivityLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestMultiplePermissions()
+    ) { result ->
+        permissions.forEach { permission ->
+            if (result[permission] == false){
+                if (!ActivityCompat.shouldShowRequestPermissionRationale(context as Activity,permission)){
+                    permissionViewModel.updateLaunchAppSettings(true)
+                }
+                permissionViewModel.updateShowDialog(true)
+            }
+        }
+
+    }
 
     AppBottomSheet(
         state = sheetState,
         onClick = {
-            onCompleted(SettingsEvent.SetFirstLaunch)
+            permissions.forEach { permission ->
+                val isGranted = ActivityCompat.checkSelfPermission(context as Activity,permission) == PackageManager.PERMISSION_GRANTED
+                if (!isGranted){
+                    if (ActivityCompat.shouldShowRequestPermissionRationale(context as Activity,permission)){
+                        permissionViewModel.updateShowDialog(true)
+                    }else{
+                        permissionResultActivityLauncher.launch(permissions)
+                    }
+                }
+
+            }
         }
     ) {
         Scaffold(
