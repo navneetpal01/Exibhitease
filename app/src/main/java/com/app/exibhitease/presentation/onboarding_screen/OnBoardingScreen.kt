@@ -3,6 +3,7 @@ package com.app.exibhitease.presentation.onboarding_screen
 import android.Manifest
 import android.app.Activity
 import android.content.pm.PackageManager
+import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
@@ -83,31 +84,15 @@ fun OnBoardingScreen(
     val permissionResultActivityLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.RequestMultiplePermissions()
     ) { result ->
-        permissions.forEach { permission ->
-            if (result[permission] == false){
-                if (!ActivityCompat.shouldShowRequestPermissionRationale(context as Activity,permission)){
-                    permissionViewModel.updateLaunchAppSettings(true)
-                }
-                permissionViewModel.updateShowDialog(true)
-            }
-        }
+
 
     }
 
     AppBottomSheet(
         state = sheetState,
         onClick = {
-            permissions.forEach { permission ->
-                val isGranted = ActivityCompat.checkSelfPermission(context as Activity,permission) == PackageManager.PERMISSION_GRANTED
-                if (!isGranted){
-                    if (ActivityCompat.shouldShowRequestPermissionRationale(context as Activity,permission)){
-                        permissionViewModel.updateShowDialog(true)
-                    }else{
-                        permissionResultActivityLauncher.launch(permissions)
-                    }
-                }
-
-            }
+            permissionResultActivityLauncher.launch(permissions)
+            onCompleted(SettingsEvent.SetFirstLaunch)
         }
     ) {
         Scaffold(
