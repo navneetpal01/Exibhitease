@@ -21,7 +21,7 @@ import com.app.exibhitease.presentation.settings_screen.SettingsViewModel
 fun NavGraph(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
-    startDestination: Any,
+    startDestination: String,
     finishActivity: () -> Unit,
     settingsViewModel: SettingsViewModel
 ) {
@@ -35,7 +35,7 @@ fun NavGraph(
     ) {
 
 
-        composable<OnBoarding> { backStackEntry: NavBackStackEntry ->
+        composable(route = Route.OnBoardingScreen.route) { backStackEntry: NavBackStackEntry ->
             BackHandler {
                 finishActivity()
             }
@@ -49,10 +49,11 @@ fun NavGraph(
 
         }
 
-        navigation<Home>(
-            startDestination = ExibhiteaseRoute.Home
+        navigation(
+            route = Route.HomeScreen.route,
+            startDestination = ExibhiteaseTabs.Home.route
         ) {
-            composable<ExibhiteaseRoute.Home> {
+            composable(route = ExibhiteaseTabs.Home.route) {
                 BackHandler {
                     finishActivity()
                 }
@@ -60,10 +61,11 @@ fun NavGraph(
                     navController = navController
                 )
             }
-            composable<ExibhiteaseRoute.Search> {
+            composable(route = ExibhiteaseTabs.Search.route){
+
 
             }
-            composable<ExibhiteaseRoute.Settings> {
+            composable(route = ExibhiteaseTabs.Settings.route) {
 
             }
         }
@@ -75,7 +77,7 @@ fun NavGraph(
 class MainActions(navController: NavController) {
     val onBoardingComplete: (NavBackStackEntry) -> Unit = { from ->
         if (from.lifecycleIsResumed()) {
-            navController.navigate(ExibhiteaseRoute.Home)
+            navController.navigate(Route.HomeScreen.route)
         }
     }
 }

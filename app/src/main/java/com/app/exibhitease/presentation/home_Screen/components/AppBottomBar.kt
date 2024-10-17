@@ -1,6 +1,5 @@
 package com.app.exibhitease.presentation.home_Screen.components
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -23,7 +22,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.app.exibhitease.presentation.navigation.ExibhiteaseRoute
 import com.app.exibhitease.presentation.navigation.ExibhiteaseTabs
 import com.app.exibhitease.ui.theme.poppins_regular
 import com.app.exibhitease.ui.theme.system_black
@@ -31,11 +29,10 @@ import com.app.exibhitease.ui.theme.system_black
 @Composable
 fun AppBottomBar(navController: NavHostController, tabs: Array<ExibhiteaseTabs>) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
-    val currentRoute =  navBackStackEntry?.destination?.route ?: ExibhiteaseRoute.Home
-    val route = remember { ExibhiteaseTabs.values().map { it.route } }
+    val currentRoute = navBackStackEntry?.destination?.route ?: ExibhiteaseTabs.Home.route
+    val routes = remember { ExibhiteaseTabs.values().map { it.route } }
 
-
-    if (currentRoute in route) {
+    if (currentRoute in routes) {
         Row(
             modifier = Modifier
                 .height(60.dp)

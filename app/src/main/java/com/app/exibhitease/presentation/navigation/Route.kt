@@ -1,27 +1,11 @@
 package com.app.exibhitease.presentation.navigation
 
-import kotlinx.serialization.Serializable
 
-@Serializable
-object OnBoarding
+sealed class Route(
+    val route : String
+){
+    object OnBoardingScreen : Route(route = "OnBoardingScreen")
+    object HomeScreen : Route(route = "HomeScreen")
 
-
-@Serializable
-object Home
-
-@Serializable
-object Settings
-
-
-sealed class ExibhiteaseRoute{
-    @Serializable
-    object Home : ExibhiteaseRoute()
-
-    @Serializable
-    object Search : ExibhiteaseRoute()
-
-    @Serializable
-    object Settings : ExibhiteaseRoute()
 }
-
 
