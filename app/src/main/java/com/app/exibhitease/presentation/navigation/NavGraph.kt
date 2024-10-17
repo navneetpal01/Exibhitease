@@ -56,7 +56,9 @@ fun NavGraph(
                 BackHandler {
                     finishActivity()
                 }
-                HomeScreen()
+                HomeScreen(
+                    navController = navController
+                )
             }
             composable<ExibhiteaseRoute.Search> {
 

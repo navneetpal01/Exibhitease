@@ -4,6 +4,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.app.exibhitease.R
 
+
 enum class ExibhiteaseTabs(
     @StringRes val title: Int,
     @DrawableRes val icon_outlined: Int,
