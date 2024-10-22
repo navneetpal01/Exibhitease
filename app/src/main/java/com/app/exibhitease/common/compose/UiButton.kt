@@ -26,42 +26,23 @@ fun UiButton(
     modifier: Modifier = Modifier
 ){
 
-    Box(
+    Button(
+        onClick = onClick,
         modifier = modifier
-            .fillMaxWidth(0.85f)
-            .shadow(shape = RoundedCornerShape(10.dp), elevation = 2.dp)
-            .background(shapphire_blue)
-            .clickable {
-                onClick()
-            },
-        contentAlignment = Alignment.Center
-    ){
+            .fillMaxWidth(0.85f),
+        shape = RoundedCornerShape(10.dp),
+        colors = ButtonDefaults.buttonColors(containerColor = shapphire_blue),
+        elevation = null,
+        border = null,
+
+        ) {
         Text(
             text = text,
             modifier = Modifier
-                .padding(vertical = 16.dp),
+                .padding(vertical = 10.dp),
             color = Color.White,
             fontSize = 15.sp,
             fontFamily = poppins_semiBold,
         )
     }
-//    Button(
-//        onClick = onClick,
-//        modifier = modifier
-//            .fillMaxWidth(0.85f),
-//        shape = RoundedCornerShape(10.dp),
-//        colors = ButtonDefaults.buttonColors(containerColor = shapphire_blue),
-//        elevation = null,
-//        border = null,
-//
-//        ) {
-//        Text(
-//            text = text,
-//            modifier = Modifier
-//                .padding(vertical = 10.dp),
-//            color = Color.White,
-//            fontSize = 15.sp,
-//            fontFamily = poppins_semiBold,
-//        )
-//    }
 }
