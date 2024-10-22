@@ -57,9 +57,7 @@ fun NavGraph(
                 BackHandler {
                     finishActivity()
                 }
-                HomeScreen(
-                    navController = navController
-                )
+                HomeScreen()
             }
             composable(route = ExibhiteaseTabs.Search.route){
 

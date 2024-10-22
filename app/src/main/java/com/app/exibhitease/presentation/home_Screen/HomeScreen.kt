@@ -25,27 +25,13 @@ import com.app.exibhitease.ui.theme.system_white
 
 
 @Composable
-fun HomeScreen(navController : NavHostController){
-    Scaffold(
+fun HomeScreen(){
+    Column(
         modifier = Modifier
             .fillMaxSize(),
-        topBar = {
-
-        },
-        bottomBar = {
-            AppBottomBar(navController = navController, tabs = ExibhiteaseTabs.values())
-        },
-        containerColor = system_white,
-    ){ paddingValues ->
-        LazyColumn(
-            modifier = Modifier
-                .padding(paddingValues)
-                .fillMaxSize()
-        ){
-            item { 
-                Text(text = "Hello")
-            }
-        }
-
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ){
+        Text(text = "HomeScreen")
     }
 }
