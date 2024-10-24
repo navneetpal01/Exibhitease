@@ -11,6 +11,7 @@ import com.app.exibhitease.R
 val poppins_semiBold = FontFamily(Font(R.font.poppins_semi_bold))
 val poppins_Bold = FontFamily(Font(R.font.poppins_bold))
 val poppins_regular = FontFamily(Font(R.font.poppins_regular))
+val poppins_light = FontFamily(Font(R.font.poppins_light))
 val poppins_medium = FontFamily(Font(R.font.poppins_medium))
 
 // Set of Material typography styles to start with

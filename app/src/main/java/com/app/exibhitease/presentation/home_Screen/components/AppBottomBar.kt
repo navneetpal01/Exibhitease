@@ -13,6 +13,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -21,6 +22,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import com.app.exibhitease.presentation.navigation.ExibhiteaseTabs
 import com.app.exibhitease.ui.theme.shapphire_blue
 import com.app.exibhitease.ui.theme.system_black
+import com.app.exibhitease.ui.theme.system_white
 
 @Composable
 fun AppBottomBar(navController: NavHostController, tabs: Array<ExibhiteaseTabs>) {
@@ -33,7 +35,7 @@ fun AppBottomBar(navController: NavHostController, tabs: Array<ExibhiteaseTabs>)
             modifier = Modifier
                 .height(60.dp)
                 .fillMaxWidth()
-                .background(color = Color(0xFFFEFEFE)),
+                .background(color = system_white),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceAround
         ) {

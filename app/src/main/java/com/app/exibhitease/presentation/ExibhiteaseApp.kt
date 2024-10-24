@@ -8,6 +8,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
@@ -39,7 +40,7 @@ fun ExibhiteaseApp(
     Scaffold(
         modifier = Modifier
             .fillMaxSize(),
-        containerColor = system_white,
+        containerColor = Color(0xFFf6f6f6),
         bottomBar = {
             if (isBottomBarVisible){
                 AppBottomBar(navController = navController, tabs = tabs)
