@@ -32,8 +32,7 @@ fun ExibhiteaseApp(
 
     val isBottomBarVisible = remember(key1 = backStackState) {
         backStackState?.destination?.route == ExibhiteaseTabs.Home.route ||
-                backStackState?.destination?.route == ExibhiteaseTabs.Search.route ||
-                backStackState?.destination?.route == ExibhiteaseTabs.Settings.route
+                backStackState?.destination?.route == ExibhiteaseTabs.Favourites.route
     }
 
 

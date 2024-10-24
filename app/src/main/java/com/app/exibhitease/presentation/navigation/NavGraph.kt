@@ -59,11 +59,7 @@ fun NavGraph(
                 }
                 HomeScreen()
             }
-            composable(route = ExibhiteaseTabs.Search.route){
-
-
-            }
-            composable(route = ExibhiteaseTabs.Settings.route) {
+            composable(route = ExibhiteaseTabs.Favourites.route) {
 
             }
         }

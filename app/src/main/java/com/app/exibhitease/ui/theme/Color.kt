@@ -12,7 +12,7 @@ val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
 
-val system_black = Color(0xFF14142B)
+val system_black = Color(0xFF000000)
 val system_white = Color(0xFFE5E5E5)
 val color_bottomSheet = Color(0xFF17171C)
 val shapphire_blue = Color(0xFF4425FF)
